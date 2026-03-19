@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillStack — Learning Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== AUTH SCREEN ===================== -->
+  <div class="auth-screen" id="auth-screen">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
+          <rect width="10" height="10" rx="3" fill="#6366f1"/>
+          <rect x="12" y="0" width="10" height="10" rx="3" fill="#818cf8" opacity=".6"/>
+          <rect x="0" y="12" width="10" height="10" rx="3" fill="#818cf8" opacity=".6"/>
+          <rect x="12" y="12" width="10" height="10" rx="3" fill="#6366f1"/>
+        </svg>
+        <span class="auth-brand__name">SkillStack</span>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab auth-tab--active" id="tab-login">Sign In</button>
+        <button class="auth-tab" id="tab-signup">Create Account</button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="form-login" novalidate>
+        <h2 class="auth-form__title">Welcome back</h2>
+        <p class="auth-form__subtitle">Sign in to continue learning</p>
+
+        <div class="field">
+          <label class="field__label" for="login-email">Email address</label>
+          <input class="field__input" id="login-email" type="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="field__error" id="login-email-err"></span>
+        </div>
+        <div class="field">
+          <label class="field__label" for="login-password">Password</label>
+          <div class="field__input-wrap">
+            <input class="field__input" id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password" />
+            <button type="button" class="field__toggle" data-target="login-password">Show</button>
+          </div>
+          <span class="field__error" id="login-pass-err"></span>
+        </div>
+        <span class="field__error field__error--center" id="login-form-err"></span>
+
+        <button type="submit" class="btn btn--primary btn--full btn--lg">Sign In</button>
+        <p class="auth-form__switch">
+          Don't have an account?
+          <button type="button" class="link-btn" id="go-signup">Create one →</button>
+        </p>
+      </form>
+
+      <!-- Signup Form -->
+      <form class="auth-form auth-form--hidden" id="form-signup" novalidate>
+        <h2 class="auth-form__title">Create your account</h2>
+        <p class="auth-form__subtitle">Start your learning journey today</p>
+
+        <div class="field">
+          <label class="field__label" for="signup-name">Full name</label>
+          <input class="field__input" id="signup-name" type="text" placeholder="e.g. Rahul Sharma" autocomplete="name" />
+          <span class="field__error" id="signup-name-err"></span>
+        </div>
+        <div class="field">
+          <label class="field__label" for="signup-email">Email address</label>
+          <input class="field__input" id="signup-email" type="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="field__error" id="signup-email-err"></span>
+        </div>
+        <div class="field">
+          <label class="field__label" for="signup-password">Password</label>
+          <div class="field__input-wrap">
+            <input class="field__input" id="signup-password" type="password" placeholder="At least 6 characters" autocomplete="new-password" />
+            <button type="button" class="field__toggle" data-target="signup-password">Show</button>
+          </div>
+          <span class="field__error" id="signup-pass-err"></span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full btn--lg">Create Account</button>
+        <p class="auth-form__switch">
+          Already have an account?
+          <button type="button" class="link-btn" id="go-login">Sign in →</button>
+        </p>
+      </form>
+    </div>
+    <p class="auth-screen__tagline">Join 50,000+ learners growing their skills with SkillStack</p>
+  </div>
+
+  <!-- ===================== APP ===================== -->
+  <div class="app" id="app" style="display:none">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect width="10" height="10" rx="3" fill="#6366f1"/>
+          <rect x="12" y="0" width="10" height="10" rx="3" fill="#818cf8" opacity=".6"/>
+          <rect x="0" y="12" width="10" height="10" rx="3" fill="#818cf8" opacity=".6"/>
+          <rect x="12" y="12" width="10" height="10" rx="3" fill="#6366f1"/>
+        </svg>
+        <span class="sidebar__name">SkillStack</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <span class="sidebar__section-label">Main</span>
+        <ul class="sidebar__list">
+          <li>
+            <button class="sidebar__link sidebar__link--active" data-page="dashboard">
+              <svg class="sidebar__icon" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="currentColor" opacity=".9"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="currentColor" opacity=".5"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="currentColor" opacity=".5"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="currentColor" opacity=".9"/></svg>
+              Dashboard
+            </button>
+          </li>
+          <li>
+            <button class="sidebar__link" data-page="course">
+              <svg class="sidebar__icon" viewBox="0 0 20 20" fill="none"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="currentColor" stroke-width="1.5"/><path d="M7 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              My Courses
+            </button>
+          </li>
+          <li>
+            <button class="sidebar__link" data-page="explore">
+              <svg class="sidebar__icon" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M15 15l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Explore
+            </button>
+          </li>
+          <li>
+            <button class="sidebar__link" data-page="assignments">
+              <svg class="sidebar__icon" viewBox="0 0 20 20" fill="none"><path d="M6 2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 7h4M8 10h4M8 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Assignments
+            </button>
+          </li>
+        </ul>
+
+        <span class="sidebar__section-label">Account</span>
+        <ul class="sidebar__list">
+          <li>
+            <button class="sidebar__link" data-page="profile">
+              <svg class="sidebar__icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 17c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Profile
+            </button>
+          </li>
+          <li>
+            <button class="sidebar__link" id="signout-btn">
+              <svg class="sidebar__icon" viewBox="0 0 20 20" fill="none"><path d="M10.5 3H6a2 2 0 00-2 2v10a2 2 0 002 2h4.5M13 7l4 3-4 3M8 10h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Sign Out
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__user">
+          <div class="avatar avatar--sm" id="sidebar-avatar">?</div>
+          <div class="sidebar__user-info">
+            <span class="sidebar__user-name" id="sidebar-user-name">—</span>
+            <span class="sidebar__user-role">Pro Plan</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="btn-icon topbar__menu-btn" id="menu-btn" aria-label="Toggle menu">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="topbar__search">
+            <svg class="topbar__search-icon" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M15 15l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input type="search" class="topbar__search-input" id="global-search" placeholder="Search courses, lessons…" autocomplete="off" />
+          </div>
+        </div>
+        <div class="topbar__right">
+          <button class="btn-icon" aria-label="Notifications">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 00-6 6v3l-1.5 2.5h15L16 11V8a6 6 0 00-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 16.5a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="badge badge--dot"></span>
+          </button>
+          <div class="avatar avatar--md" id="topbar-avatar">?</div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <!-- DASHBOARD -->
+        <section class="page" id="page-dashboard">
+          <div class="page__header">
+            <div>
+              <h1 class="page__title" id="user-greeting">Good morning 👋</h1>
+              <p class="page__subtitle">You have 3 courses in progress and 2 deadlines this week.</p>
+            </div>
+            <button class="btn btn--primary" data-page="explore">Browse Courses</button>
+          </div>
+
+          <section class="section">
+            <div class="section__header">
+              <h2 class="section__title">Continue Learning</h2>
+              <button class="link-btn" data-page="course">View all →</button>
+            </div>
+            <div class="course-grid course-grid--continue">
+              <article class="course-card course-card--wide">
+                <div class="course-card__thumb course-card__thumb--blue"><span class="course-card__label">Design</span></div>
+                <div class="course-card__body">
+                  <h3 class="course-card__title">UI/UX Design Fundamentals</h3>
+                  <p class="course-card__meta">Sarah Chen · 24 lessons</p>
+                  <div class="progress-bar"><div class="progress-bar__fill" style="--pct: 68%"></div></div>
+                  <div class="progress-bar__label"><span>Lesson 16 of 24</span><span>68%</span></div>
+                </div>
+                <button class="btn btn--primary course-card__cta" data-page="course">Resume</button>
+              </article>
+              <article class="course-card course-card--wide">
+                <div class="course-card__thumb course-card__thumb--indigo"><span class="course-card__label">Dev</span></div>
+                <div class="course-card__body">
+                  <h3 class="course-card__title">Full-Stack JavaScript</h3>
+                  <p class="course-card__meta">Marco Rossi · 40 lessons</p>
+                  <div class="progress-bar"><div class="progress-bar__fill" style="--pct: 45%"></div></div>
+                  <div class="progress-bar__label"><span>Lesson 18 of 40</span><span>45%</span></div>
+                </div>
+                <button class="btn btn--primary course-card__cta" data-page="course">Resume</button>
+              </article>
+              <article class="course-card course-card--wide">
+                <div class="course-card__thumb course-card__thumb--teal"><span class="course-card__label">Data</span></div>
+                <div class="course-card__body">
+                  <h3 class="course-card__title">Data Analysis with Python</h3>
+                  <p class="course-card__meta">Priya Nair · 32 lessons</p>
+                  <div class="progress-bar"><div class="progress-bar__fill" style="--pct: 22%"></div></div>
+                  <div class="progress-bar__label"><span>Lesson 7 of 32</span><span>22%</span></div>
+                </div>
+                <button class="btn btn--primary course-card__cta" data-page="course">Resume</button>
+              </article>
+            </div>
+          </section>
+
+          <div class="dashboard-row">
+            <section class="section section--deadlines">
+              <div class="section__header"><h2 class="section__title">Upcoming Deadlines</h2></div>
+              <ul class="deadline-list">
+                <li class="deadline-item">
+                  <div class="deadline-item__dot deadline-item__dot--urgent"></div>
+                  <div class="deadline-item__info">
+                    <span class="deadline-item__name">JS Array Methods Quiz</span>
+                    <span class="deadline-item__course">Full-Stack JavaScript</span>
+                  </div>
+                  <span class="badge badge--urgent">Today</span>
+                </li>
+                <li class="deadline-item">
+                  <div class="deadline-item__dot deadline-item__dot--warning"></div>
+                  <div class="deadline-item__info">
+                    <span class="deadline-item__name">Wireframe Design Project</span>
+                    <span class="deadline-item__course">UI/UX Design Fundamentals</span>
+                  </div>
+                  <span class="badge badge--warning">2 days</span>
+                </li>
+                <li class="deadline-item">
+                  <div class="deadline-item__dot deadline-item__dot--normal"></div>
+                  <div class="deadline-item__info">
+                    <span class="deadline-item__name">Pandas DataFrame Assignment</span>
+                    <span class="deadline-item__course">Data Analysis with Python</span>
+                  </div>
+                  <span class="badge badge--neutral">5 days</span>
+                </li>
+                <li class="deadline-item">
+                  <div class="deadline-item__dot deadline-item__dot--normal"></div>
+                  <div class="deadline-item__info">
+                    <span class="deadline-item__name">Final Portfolio Submission</span>
+                    <span class="deadline-item__course">UI/UX Design Fundamentals</span>
+                  </div>
+                  <span class="badge badge--neutral">12 days</span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="section section--stats">
+              <div class="section__header"><h2 class="section__title">Your Progress</h2></div>
+              <div class="stats-grid">
+                <div class="stat-card"><span class="stat-card__value">3</span><span class="stat-card__label">Active Courses</span></div>
+                <div class="stat-card"><span class="stat-card__value">41</span><span class="stat-card__label">Lessons Done</span></div>
+                <div class="stat-card"><span class="stat-card__value">12h</span><span class="stat-card__label">This Week</span></div>
+                <div class="stat-card"><span class="stat-card__value">2</span><span class="stat-card__label">Certificates</span></div>
+              </div>
+            </section>
+          </div>
+
+          <section class="section">
+            <div class="section__header">
+              <h2 class="section__title">Recommended for You</h2>
+              <button class="link-btn" data-page="explore">See all →</button>
+            </div>
+            <div class="course-grid course-grid--recommended">
+              <article class="course-card">
+                <div class="course-card__thumb course-card__thumb--rose"><span class="course-card__label">Product</span></div>
+                <div class="course-card__body">
+                  <h3 class="course-card__title">Product Management Essentials</h3>
+                  <p class="course-card__meta">Lisa Park · 18 lessons · 4.9 ★</p>
+                  <p class="course-card__price">₹4,099</p>
+                </div>
+              </article>
+              <article class="course-card">
+                <div class="course-card__thumb course-card__thumb--amber"><span class="course-card__label">AI</span></div>
+                <div class="course-card__body">
+                  <h3 class="course-card__title">Intro to Machine Learning</h3>
+                  <p class="course-card__meta">Dr. Kim · 30 lessons · 4.8 ★</p>
+                  <p class="course-card__price">₹6,599</p>
+                </div>
+              </article>
+              <article class="course-card">
+                <div class="course-card__thumb course-card__thumb--emerald"><span class="course-card__label">Business</span></div>
+                <div class="course-card__body">
+                  <h3 class="course-card__title">Growth Marketing Playbook</h3>
+                  <p class="course-card__meta">Tom Rivera · 22 lessons · 4.7 ★</p>
+                  <p class="course-card__price">₹3,299</p>
+                </div>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <!-- COURSE PAGE -->
+        <section class="page page--hidden" id="page-course">
+          <div class="course-layout">
+            <div class="course-main">
+              <nav class="breadcrumb">
+                <button class="link-btn" data-page="dashboard">Dashboard</button>
+                <span class="breadcrumb__sep">›</span>
+                <span>Full-Stack JavaScript</span>
+              </nav>
+              <div class="video-player">
+                <div class="video-player__screen">
+                  <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="rgba(255,255,255,0.12)"/><polygon points="23,18 41,28 23,38" fill="white"/></svg>
+                  <p class="video-player__lesson-name">Lesson 18: Async/Await &amp; Promises</p>
+                </div>
+                <div class="video-player__controls">
+                  <span class="video-player__time">12:04 / 38:22</span>
+                  <div class="video-progress"><div class="video-progress__fill" style="width: 32%"></div></div>
+                  <div class="video-player__actions">
+                    <button class="btn btn--ghost btn--sm">⏮</button>
+                    <button class="btn btn--primary btn--sm" id="play-btn">▶ Play</button>
+                    <button class="btn btn--ghost btn--sm">⏭</button>
+                  </div>
+                </div>
+              </div>
+              <div class="course-info">
+                <div class="course-info__header">
+                  <div>
+                    <h1 class="course-info__title">Full-Stack JavaScript</h1>
+                    <p class="course-info__meta">
+                      <span>By Marco Rossi</span>
+                      <span class="course-info__dot">·</span>
+                      <span>40 Lessons</span>
+                      <span class="course-info__dot">·</span>
+                      <span>Intermediate</span>
+                    </p>
+                  </div>
+                  <div class="course-info__progress">
+                    <span class="course-info__pct">45%</span>
+                    <span class="course-info__pct-label">Complete</span>
+                  </div>
+                </div>
+                <p class="course-info__description">Master modern JavaScript from fundamentals to full-stack apps. Covers Node.js, Express, MongoDB, React, and deployment strategies used in real production environments.</p>
+              </div>
+            </div>
+
+            <aside class="lesson-sidebar">
+              <div class="lesson-sidebar__header">
+                <h2 class="lesson-sidebar__title">Course Content</h2>
+                <span class="lesson-sidebar__count">18 / 40 done</span>
+              </div>
+              <div class="module-list" id="module-list">
+                <div class="module">
+                  <button class="module__header module__header--open" data-module="mod1">
+                    <span>Module 1: JavaScript Foundations</span>
+                    <svg class="module__chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                  <ul class="lesson-list lesson-list--open" id="mod1">
+                    <li class="lesson-item lesson-item--done"><span class="lesson-item__check">✓</span><span>Variables &amp; Data Types</span><span class="lesson-item__dur">12m</span></li>
+                    <li class="lesson-item lesson-item--done"><span class="lesson-item__check">✓</span><span>Functions &amp; Scope</span><span class="lesson-item__dur">18m</span></li>
+                    <li class="lesson-item lesson-item--done"><span class="lesson-item__check">✓</span><span>Arrays &amp; Objects</span><span class="lesson-item__dur">22m</span></li>
+                    <li class="lesson-item lesson-item--done"><span class="lesson-item__check">✓</span><span>DOM Manipulation</span><span class="lesson-item__dur">28m</span></li>
+                  </ul>
+                </div>
+                <div class="module">
+                  <button class="module__header module__header--open" data-module="mod2">
+                    <span>Module 2: Async JavaScript</span>
+                    <svg class="module__chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                  <ul class="lesson-list lesson-list--open" id="mod2">
+                    <li class="lesson-item lesson-item--done"><span class="lesson-item__check">✓</span><span>Callbacks &amp; Events</span><span class="lesson-item__dur">15m</span></li>
+                    <li class="lesson-item lesson-item--done"><span class="lesson-item__check">✓</span><span>Promises Deep Dive</span><span class="lesson-item__dur">24m</span></li>
+                    <li class="lesson-item lesson-item--active"><span class="lesson-item__check lesson-item__check--play">▶</span><span>Async/Await &amp; Promises</span><span class="lesson-item__dur">38m</span></li>
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>Fetch API &amp; REST</span><span class="lesson-item__dur">30m</span></li>
+                  </ul>
+                </div>
+                <div class="module">
+                  <button class="module__header" data-module="mod3">
+                    <span>Module 3: Node.js &amp; Express</span>
+                    <svg class="module__chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                  <ul class="lesson-list" id="mod3">
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>Node.js Basics</span><span class="lesson-item__dur">20m</span></li>
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>Express Routing</span><span class="lesson-item__dur">35m</span></li>
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>Middleware &amp; Auth</span><span class="lesson-item__dur">40m</span></li>
+                  </ul>
+                </div>
+                <div class="module">
+                  <button class="module__header" data-module="mod4">
+                    <span>Module 4: MongoDB &amp; APIs</span>
+                    <svg class="module__chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </button>
+                  <ul class="lesson-list" id="mod4">
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>MongoDB Setup</span><span class="lesson-item__dur">18m</span></li>
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>Mongoose Models</span><span class="lesson-item__dur">32m</span></li>
+                    <li class="lesson-item"><span class="lesson-item__check lesson-item__check--empty"></span><span>REST API Design</span><span class="lesson-item__dur">45m</span></li>
+                  </ul>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- EXPLORE PAGE -->
+        <section class="page page--hidden" id="page-explore">
+          <div class="page__header">
+            <div>
+              <h1 class="page__title">Explore Courses</h1>
+              <p class="page__subtitle">Discover 200+ courses across design, development, data and more.</p>
+            </div>
+          </div>
+          <div class="explore-controls">
+            <div class="search-box">
+              <svg class="search-box__icon" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M15 15l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <input type="search" class="search-box__input" id="explore-search" placeholder="Search courses…" autocomplete="off" />
+            </div>
+            <div class="filter-chips" id="filter-chips">
+              <button class="chip chip--active" data-filter="all">All</button>
+              <button class="chip" data-filter="design">Design</button>
+              <button class="chip" data-filter="development">Development</button>
+              <button class="chip" data-filter="data">Data Science</button>
+              <button class="chip" data-filter="business">Business</button>
+              <button class="chip" data-filter="ai">AI &amp; ML</button>
+            </div>
+          </div>
+          <div class="explore-grid" id="explore-grid"></div>
+          <p class="explore-empty" id="explore-empty" style="display:none">No courses match your search.</p>
+        </section>
+
+        <!-- ASSIGNMENTS PAGE -->
+        <section class="page page--hidden" id="page-assignments">
+          <div class="page__header">
+            <div>
+              <h1 class="page__title">Assignments</h1>
+              <p class="page__subtitle">Track and submit your coursework.</p>
+            </div>
+            <div class="filter-chips">
+              <button class="chip chip--active" data-assign-filter="all">All</button>
+              <button class="chip" data-assign-filter="pending">Pending</button>
+              <button class="chip" data-assign-filter="submitted">Submitted</button>
+              <button class="chip" data-assign-filter="graded">Graded</button>
+            </div>
+          </div>
+          <div class="table-container">
+            <table class="assignments-table">
+              <thead>
+                <tr>
+                  <th>Assignment</th>
+                  <th>Course</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                  <th>Grade</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="assignments-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PROFILE PAGE -->
+        <section class="page page--hidden" id="page-profile">
+          <div class="page__header">
+            <h1 class="page__title">My Profile</h1>
+          </div>
+          <div class="profile-layout">
+            <aside class="profile-card">
+              <div class="avatar avatar--xl" id="profile-avatar">?</div>
+              <h2 class="profile-card__name" id="profile-name">—</h2>
+              <p class="profile-card__role">Learner</p>
+              <p class="profile-card__email" id="profile-email">—</p>
+              <div class="profile-card__divider"></div>
+              <ul class="profile-card__stats">
+                <li><strong>3</strong><span>In Progress</span></li>
+                <li><strong>2</strong><span>Completed</span></li>
+                <li><strong>41</strong><span>Lessons Done</span></li>
+              </ul>
+              <button class="btn btn--outline btn--full">Edit Profile</button>
+            </aside>
+
+            <div class="profile-content">
+              <section class="section">
+                <div class="section__header"><h2 class="section__title">Enrolled Courses</h2></div>
+                <div class="enrolled-list">
+                  <div class="enrolled-item">
+                    <div class="enrolled-item__thumb enrolled-item__thumb--indigo"></div>
+                    <div class="enrolled-item__info">
+                      <h3 class="enrolled-item__title">Full-Stack JavaScript</h3>
+                      <p class="enrolled-item__meta">Marco Rossi · 40 lessons</p>
+                      <div class="progress-bar progress-bar--sm"><div class="progress-bar__fill" style="--pct: 45%"></div></div>
+                    </div>
+                    <span class="badge badge--info">45%</span>
+                  </div>
+                  <div class="enrolled-item">
+                    <div class="enrolled-item__thumb enrolled-item__thumb--blue"></div>
+                    <div class="enrolled-item__info">
+                      <h3 class="enrolled-item__title">UI/UX Design Fundamentals</h3>
+                      <p class="enrolled-item__meta">Sarah Chen · 24 lessons</p>
+                      <div class="progress-bar progress-bar--sm"><div class="progress-bar__fill" style="--pct: 68%"></div></div>
+                    </div>
+                    <span class="badge badge--info">68%</span>
+                  </div>
+                  <div class="enrolled-item">
+                    <div class="enrolled-item__thumb enrolled-item__thumb--teal"></div>
+                    <div class="enrolled-item__info">
+                      <h3 class="enrolled-item__title">Data Analysis with Python</h3>
+                      <p class="enrolled-item__meta">Priya Nair · 32 lessons</p>
+                      <div class="progress-bar progress-bar--sm"><div class="progress-bar__fill" style="--pct: 22%"></div></div>
+                    </div>
+                    <span class="badge badge--info">22%</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="section">
+                <div class="section__header"><h2 class="section__title">Certificates Earned</h2></div>
+                <div class="cert-grid">
+                  <div class="cert-card">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="8" stroke="#6366f1" stroke-width="2"/><path d="M10 20l-2 9 8-4 8 4-2-9" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/></svg>
+                    <div><h3 class="cert-card__title">HTML &amp; CSS Mastery</h3><p class="cert-card__date">Issued Dec 2024</p></div>
+                    <button class="btn btn--ghost btn--sm">View</button>
+                  </div>
+                  <div class="cert-card">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="8" stroke="#6366f1" stroke-width="2"/><path d="M10 20l-2 9 8-4 8 4-2-9" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/></svg>
+                    <div><h3 class="cert-card__title">Git &amp; Version Control</h3><p class="cert-card__date">Issued Oct 2024</p></div>
+                    <button class="btn btn--ghost btn--sm">View</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div><!-- end #app -->
+
+  <script src="script.js"></script>
+</body>
+</html>
