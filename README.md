@@ -1,2 +1,2 @@
-# SDG-Climate-Action
-This project supports Climate Action by using technology to monitor environmental impact, reduce carbon emissions, and promote sustainable practices. It aims to raise awareness about climate change and encourage eco-friendly behavior, contributing to a greener, more sustainable future in line with UN SDG 13.
+# SkillStack – Learning Management System (LMS)
+SkillStack is a web-based Learning Management System (LMS) designed to provide a structured platform for students, teachers, and administrators. The project currently focuses on the frontend implementation, featuring a modern and user-friendly interface for login, dashboards, and basic navigation. It demonstrates how an LMS can manage courses, tests, and user roles through an intuitive UI built using HTML, CSS, and JavaScript.
