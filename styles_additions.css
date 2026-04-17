@@ -1,0 +1,313 @@
+/* ============================================================
+   SkillStack LMS v2 — styles_additions.css
+   Append this to styles.css  (or @import in styles.css)
+   New components: Enrolled cards, Video player iframe, Tabs,
+   Course-assign cards, Submission cards, Teacher panel,
+   Modals, Drop zone, Empty states, Submission detail
+   ============================================================ */
+
+/* ─── Enrolled Courses Grid (My Courses page) ────────────────── */
+.enrolled-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+.enrolled-course-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow .2s, transform .2s;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.enrolled-course-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.enrolled-course-card__thumb {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+.enrolled-course-card__body { padding: 16px; flex: 1; }
+.enrolled-course-card__title { font-family: var(--font-display); font-size: var(--font-size-md); font-weight: 700; margin-bottom: 4px; }
+.enrolled-course-card__meta  { font-size: var(--font-size-xs); color: var(--text-muted); }
+.enrolled-course-card__footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ─── Explore card — enroll button ──────────────────────────── */
+.explore-card { display: flex; flex-direction: column; }
+.explore-card__body { flex: 1; }
+
+/* ─── Video Player (iframe version) ─────────────────────────── */
+.video-player__frame {
+  background: #0f172a;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  text-align: center;
+  color: rgba(255,255,255,.6);
+  gap: 12px;
+  width: 100%;
+}
+.video-placeholder p { font-size: var(--font-size-sm); }
+.video-player__meta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.video-player__lesson-name {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  flex: 1;
+}
+
+/* ─── Course Tabs ─────────────────────────────────────────────── */
+.course-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin: 20px 0 0;
+}
+.course-tab {
+  padding: 10px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color .15s, border-color .15s;
+}
+.course-tab:hover { color: var(--text-primary); }
+.course-tab--active { color: var(--indigo); border-bottom-color: var(--indigo); }
+.course-tab-content { padding: 20px 0; }
+.course-tab-content--hidden { display: none; }
+
+/* ─── Course Assignment Cards (inside course player) ────────── */
+.course-assign-list { display: flex; flex-direction: column; gap: 12px; }
+.course-assign-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.course-assign-card__info { flex: 1; }
+.course-assign-card__title { font-weight: 600; font-size: var(--font-size-sm); margin-bottom: 4px; }
+.course-assign-card__desc  { font-size: var(--font-size-xs); color: var(--text-secondary); margin-bottom: 6px; }
+.course-assign-card__actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+
+/* ─── Modals ──────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modal-in .18s ease;
+}
+@keyframes modal-in { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.modal__title { font-family: var(--font-display); font-size: var(--font-size-lg); font-weight: 700; }
+.modal__close { font-size: 18px; color: var(--text-muted); transition: color .15s; }
+.modal__close:hover { color: var(--text-primary); }
+.modal__body { padding: 20px 24px; overflow-y: auto; flex: 1; }
+.modal__desc { font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: 16px; }
+.modal__footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ─── Drop Zone ─────────────────────────────────────────────── */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: border-color .15s, background .15s;
+  cursor: pointer;
+}
+.drop-zone--over { border-color: var(--indigo); background: var(--indigo-dim); }
+.drop-zone__text { font-weight: 600; font-size: var(--font-size-sm); }
+.drop-zone__hint { font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: 8px; }
+.upload-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: var(--font-size-sm);
+}
+.upload-preview span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ─── Empty States ───────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+.empty-state h3 { font-family: var(--font-display); font-size: var(--font-size-lg); font-weight: 700; color: var(--text-primary); }
+.empty-state p  { font-size: var(--font-size-sm); max-width: 320px; }
+.empty-state .btn { margin-top: 8px; }
+
+/* ─── Teacher Panel ──────────────────────────────────────────── */
+.teacher-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+.teacher-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.teacher-assign-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.teacher-assign-card:hover { background: var(--bg); }
+.teacher-assign-card--active { background: var(--indigo-dim); border-color: var(--indigo); }
+.teacher-assign-card__title { font-weight: 600; font-size: var(--font-size-sm); margin-bottom: 2px; }
+.teacher-assign-card__meta  { font-size: var(--font-size-xs); color: var(--text-muted); }
+
+/* ─── Submission Cards (Teacher view) ───────────────────────── */
+.submission-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  background: var(--surface);
+}
+.submission-card__avatar {
+  width: 38px; height: 38px;
+  background: var(--indigo-dim);
+  color: var(--indigo);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+}
+.submission-card__info { flex: 1; min-width: 0; }
+.submission-card__name { font-weight: 600; font-size: var(--font-size-sm); margin-bottom: 2px; }
+.submission-card__meta { font-size: var(--font-size-xs); color: var(--text-muted); }
+.submission-card__meta a { color: var(--indigo); text-decoration: none; }
+.submission-card__meta a:hover { text-decoration: underline; }
+.submission-card__actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+
+/* ─── Submission Detail (Student view modal) ─────────────────── */
+.submission-detail { display: flex; flex-direction: column; gap: 12px; }
+.submission-detail__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--font-size-sm);
+}
+.submission-detail__row span { color: var(--text-muted); }
+.submission-detail__feedback {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-top: 4px;
+}
+.submission-detail__feedback h4 { font-size: var(--font-size-sm); font-weight: 700; margin-bottom: 6px; color: var(--indigo); }
+.submission-detail__feedback p  { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.6; }
+
+/* ─── Badge additions ────────────────────────────────────────── */
+.badge--pending   { background: rgba(245,158,11,.12); color: #92400e; }
+.badge--submitted { background: rgba(99,102,241,.12);  color: var(--indigo); }
+.badge--graded    { background: rgba(16,185,129,.12);  color: #065f46; }
+.badge--urgent    { background: rgba(244,63,94,.12);   color: #9f1239; }
+.badge--warning   { background: rgba(245,158,11,.12);  color: #78350f; }
+.badge--neutral   { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); }
+.badge--info      { background: rgba(99,102,241,.1); color: var(--indigo); }
+.badge            { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 20px; font-size: var(--font-size-xs); font-weight: 700; white-space: nowrap; }
+
+/* ─── Sidebar role label colour ──────────────────────────────── */
+.sidebar__user-role { font-size: 11px; color: var(--sidebar-text); }
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .teacher-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .enrolled-courses-grid { grid-template-columns: 1fr; }
+  .modal { max-width: 100%; border-radius: var(--radius); }
+  .course-assign-card { flex-direction: column; }
+  .submission-card { flex-wrap: wrap; }
+}
