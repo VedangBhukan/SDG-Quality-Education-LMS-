@@ -254,11 +254,10 @@ INSERT INTO lesson_progress (user_id, lesson_id, completed) VALUES
 (3, 8, 1),
 (3, 9, 1);
 
--- ============================================================
---  TESTS MODULE (MCQ with auto-grading)
--- ============================================================
 
--- ── Tests ─────────────────────────────────────────────────────
+--  TESTS MODULE (MCQ with auto-grading)
+
+-- ── Tests ───────────────────────
 CREATE TABLE tests (
   id          INT AUTO_INCREMENT PRIMARY KEY,
   course_id   INT NOT NULL,
@@ -274,7 +273,7 @@ CREATE TABLE tests (
   FOREIGN KEY (teacher_id) REFERENCES users(id)   ON DELETE SET NULL
 );
 
--- ── Questions ─────────────────────────────────────────────────
+-- ── Questions ──────────────────
 CREATE TABLE questions (
   id           INT AUTO_INCREMENT PRIMARY KEY,
   test_id      INT NOT NULL,
@@ -290,7 +289,7 @@ CREATE TABLE questions (
   FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE
 );
 
--- ── Test Attempts ─────────────────────────────────────────────
+-- ── Test Attempts ───────────
 CREATE TABLE test_attempts (
   id           INT AUTO_INCREMENT PRIMARY KEY,
   test_id      INT NOT NULL,
@@ -306,7 +305,7 @@ CREATE TABLE test_attempts (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- ── Test Answers ──────────────────────────────────────────────
+-- ── Test Answers ────────────────
 CREATE TABLE test_answers (
   id           INT AUTO_INCREMENT PRIMARY KEY,
   attempt_id   INT NOT NULL,
