@@ -5,7 +5,7 @@ require_once __DIR__.'/../config/db.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $db     = getDB();
 
-// ── GET assignments ───────────────────────────────────────────
+// ── GET assignments ─────────────────
 if ($method === 'GET') {
     $uid    = (int)($_GET['user_id']    ?? 0);
     $tid    = (int)($_GET['teacher_id'] ?? 0);
