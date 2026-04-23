@@ -350,3 +350,8 @@ INSERT INTO questions (test_id, question_text, option_a, option_b, option_c, opt
 UPDATE `users`
 SET `password` = '$2y$10$oB3870FhghGArUbbqcf8juBFdCJKE0AoZ/Iu5aIN90Wr66Kf67ZlC'
 WHERE `email` = 'admin@skillstack.in';
+
+
+UPDATE `users`
+SET `password` = '$2y$10$8E/oNXDdyhF0diAd1ZPgk.ppYpqkLWeEwUHCAeL58XMbwt2n1lHNO'
+WHERE `email` = 'teacher@skillstack.in';
