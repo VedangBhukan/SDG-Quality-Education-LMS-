@@ -1,4 +1,3 @@
-
 --  SkillStack LMS Pro — Complete Schema v2
 --  3 Roles: student | teacher | admin
 --  Demo pricing: ₹10 per course for presentation
@@ -7,7 +6,7 @@ DROP DATABASE IF EXISTS skillstack_lms;
 CREATE DATABASE skillstack_lms CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE skillstack_lms;
 
--- ── Users ─────────────────────────────────────────────────────
+-- ── Users ────────────
 CREATE TABLE users (
   id         INT AUTO_INCREMENT PRIMARY KEY,
   name       VARCHAR(100) NOT NULL,
@@ -18,7 +17,7 @@ CREATE TABLE users (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- ── Courses ───────────────────────────────────────────────────
+-- ── Courses ───────────
 CREATE TABLE courses (
   id          INT AUTO_INCREMENT PRIMARY KEY,
   title       VARCHAR(200) NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE courses (
   FOREIGN KEY (teacher_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
--- ── Lessons ───────────────────────────────────────────────────
+-- ── Lessons ─────────
 CREATE TABLE lessons (
   id          INT AUTO_INCREMENT PRIMARY KEY,
   course_id   INT NOT NULL,
@@ -48,7 +47,7 @@ CREATE TABLE lessons (
   FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );
 
--- ── Payments ──────────────────────────────────────────────────
+-- ── Payments ───────────
 CREATE TABLE payments (
   id             INT AUTO_INCREMENT PRIMARY KEY,
   user_id        INT NOT NULL,
@@ -62,7 +61,7 @@ CREATE TABLE payments (
   FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );
 
--- ── Enrollments ───────────────────────────────────────────────
+-- ── Enrollments ───────────
 CREATE TABLE enrollments (
   id          INT AUTO_INCREMENT PRIMARY KEY,
   user_id     INT NOT NULL,
@@ -75,7 +74,7 @@ CREATE TABLE enrollments (
   FOREIGN KEY (payment_id) REFERENCES payments(id) ON DELETE SET NULL
 );
 
--- ── Lesson Progress ───────────────────────────────────────────
+-- ── Lesson Progress ────────
 CREATE TABLE lesson_progress (
   id         INT AUTO_INCREMENT PRIMARY KEY,
   user_id    INT NOT NULL,
@@ -87,7 +86,7 @@ CREATE TABLE lesson_progress (
   FOREIGN KEY (lesson_id) REFERENCES lessons(id)  ON DELETE CASCADE
 );
 
--- ── Assignments ───────────────────────────────────────────────
+-- ── Assignments ──────────
 CREATE TABLE assignments (
   id              INT AUTO_INCREMENT PRIMARY KEY,
   course_id       INT NOT NULL,
@@ -103,7 +102,7 @@ CREATE TABLE assignments (
   FOREIGN KEY (teacher_id) REFERENCES users(id)   ON DELETE SET NULL
 );
 
--- ── Submissions ───────────────────────────────────────────────
+-- ── Submissions ─────────
 CREATE TABLE submissions (
   id            INT AUTO_INCREMENT PRIMARY KEY,
   assignment_id INT NOT NULL,
@@ -124,11 +123,10 @@ CREATE TABLE submissions (
   FOREIGN KEY (graded_by)     REFERENCES users(id)       ON DELETE SET NULL
 );
 
--- ============================================================
---  SEED DATA
--- ============================================================
 
--- ── Demo Accounts ────────────────────────────────────────────
+--  SEED DATA
+
+-- ── Demo Accounts ──────────────
 -- admin@skillstack.in    → Admin@123
 -- teacher@skillstack.in  → Teacher@123
 -- student@skillstack.in  → Student@123
