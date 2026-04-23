@@ -355,3 +355,8 @@ WHERE `email` = 'admin@skillstack.in';
 UPDATE `users`
 SET `password` = '$2y$10$8E/oNXDdyhF0diAd1ZPgk.ppYpqkLWeEwUHCAeL58XMbwt2n1lHNO'
 WHERE `email` = 'teacher@skillstack.in';
+
+
+UPDATE `users`
+SET `password` = '$2y$10$UP5ujAsKWzS4LwBQqw7nyelXdcvrNy4oKLQDj2P.RT5WyYQNsumkO'
+WHERE `email` = 'demo@skillstack.in';
