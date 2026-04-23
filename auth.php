@@ -4,7 +4,7 @@ require_once __DIR__.'/../config/db.php';
 
 $action = $_GET['action'] ?? '';
 
-// ── POST /api/auth.php?action=login ──────────────────────────
+// ── POST /api/auth.php?action=login ───────────────
 if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $d     = json_decode(file_get_contents('php://input'), true);
     $email = strtolower(trim($d['email'] ?? ''));
@@ -25,7 +25,7 @@ if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     jsonResponse(['success'=>true,'user'=>$u]);
 }
 
-// ── POST /api/auth.php?action=signup ─────────────────────────
+// ── POST /api/auth.php?action=signup ─────────────
 if ($action === 'signup' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $d     = json_decode(file_get_contents('php://input'), true);
     $name  = trim($d['name']  ?? '');
