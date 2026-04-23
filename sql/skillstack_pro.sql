@@ -344,3 +344,9 @@ INSERT INTO questions (test_id, question_text, option_a, option_b, option_c, opt
  'map()', 'reduce()', 'filter()', 'forEach()', 'c', 1, 3),
 (2, 'What is the output of: console.log(typeof null)?',
  '"null"', '"undefined"', '"object"', '"boolean"', 'c', 1, 4);
+
+
+--
+UPDATE `users`
+SET `password` = '$2y$10$oB3870FhghGArUbbqcf8juBFdCJKE0AoZ/Iu5aIN90Wr66Kf67ZlC'
+WHERE `email` = 'admin@skillstack.in';
