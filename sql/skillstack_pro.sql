@@ -1,9 +1,8 @@
--- ============================================================
+
 --  SkillStack LMS Pro — Complete Schema v2
 --  3 Roles: student | teacher | admin
 --  Demo pricing: ₹10 per course for presentation
---  Run in phpMyAdmin: drop old DB, create fresh, import this
--- ============================================================
+
 DROP DATABASE IF EXISTS skillstack_lms;
 CREATE DATABASE skillstack_lms CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE skillstack_lms;
