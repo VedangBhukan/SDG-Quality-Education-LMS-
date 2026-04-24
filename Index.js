@@ -1,7 +1,7 @@
-/* ============================================================
+/* ==================================
    SkillStack LMS Pro — script.js
    Roles: student | teacher | admin
-   ============================================================ */
+   ================================== */
 
 const API = 'http://localhost/skillstack_pro/api';
 
@@ -258,7 +258,7 @@ async function loadEnrolled() {
   enrolledCourses = d.courses; return enrolledCourses;
 }
 
-/* ── Dashboard ──────────────────────────────────────────────── */
+/* ── Dashboard ───────────────────────────────────── */
 async function loadStudentDashboard() {
   await loadEnrolled();
   const body  = document.getElementById('dash-body');
@@ -297,7 +297,7 @@ async function loadStudentDashboard() {
       }).join('');
 }
 
-/* ── My Courses ─────────────────────────────────────────────── */
+/* ── My Courses ──────────────────────────────────── */
 async function loadMyCourses() {
   await loadEnrolled();
   const grid=document.getElementById('my-courses-grid');
@@ -334,7 +334,7 @@ function courseCardHTML(c, enrolled=false) {
   </div>`;
 }
 
-/* ── Explore ────────────────────────────────────────────────── */
+/* ── Explore ──────────────────────────────────── */
 let exploreReady=false;
 async function loadExplore() {
   if(!exploreReady){
