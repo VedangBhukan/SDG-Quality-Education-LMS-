@@ -1,11 +1,4 @@
-/* ============================================================
-   SkillStack LMS — script.js
-   Sections: Auth → User State → Router → Explore → Assignments → Course UI
-   ============================================================ */
 
-/* ─── In-memory "database" of registered users ─────────────
-   Format: { email: { name, password } }
-   Pre-seeded with one demo account for testing.            */
 const USERS_DB = {
   'demo@skillstack.in': { name: 'Demo User', password: 'demo123' }
 };
